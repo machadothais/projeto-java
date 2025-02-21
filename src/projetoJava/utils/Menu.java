@@ -22,13 +22,26 @@ public class Menu {
         Produto produto1 = new Produto("Ração", 50.0, 10, 14);
         Produto produto2 = new Produto("Brinquedo", 25.0, 5, 16);
         Produto produto3 = new Produto("Cama para cachorro", 120.0, 3, 55);
+        Produto produto4 = new Produto("Areia Higiênica", 54.32, 7, 509);
+        Produto produto5 = new Produto("Escova Pet", 23.00, 12, 800);
+        Produto produto6 = new Produto("Kit laços para pet", 5.99, 18, 45);
+        Produto produto7 = new Produto("Kit Banho pet", 77.90, 14, 52);
+        Produto produto8 = new Produto("Bebedouro e comedouro", 31.32, 4, 89);
+        Produto produto9 = new Produto("Anti pugas", 15.30, 122, 150);
+        Produto produto10 = new Produto("Colírio Cpirovet", 144.90, 5, 65);
 
         List<Produto> produtosDisponiveis = new ArrayList<>();
         produtosDisponiveis.add(produto1);
         produtosDisponiveis.add(produto2);
         produtosDisponiveis.add(produto3);
+        produtosDisponiveis.add(produto4);
+        produtosDisponiveis.add(produto5);
+        produtosDisponiveis.add(produto6);
+        produtosDisponiveis.add(produto7);
+        produtosDisponiveis.add(produto8);
+        produtosDisponiveis.add(produto9);
+        produtosDisponiveis.add(produto10);
 
-        // Criando o cliente
         System.out.print("Digite o nome do cliente: ");
         String nomeCliente = scanner.nextLine();
         System.out.print("Digite o email do cliente: ");
@@ -38,7 +51,6 @@ public class Menu {
         
         Cliente cliente = new Cliente(nomeCliente, emailCliente, enderecoCliente);
 
-        // Criando o pedido
         Pedido pedido = new Pedido(cliente);
 
         int opcao;
@@ -59,7 +71,7 @@ public class Menu {
             System.out.println("Entre com a opção desejada:                          ");
             System.out.println("                                                     " + Cores.TEXT_RESET);
             opcao = scanner.nextInt();
-            scanner.nextLine(); // Consome o newline após o nextInt()
+            scanner.nextLine(); 
 
             switch (opcao) {
                 case 1:
@@ -112,15 +124,13 @@ public class Menu {
                 Produto produtoEscolhido = produtosDisponiveis.get(index);
                 System.out.print("Quantas unidades de " + produtoEscolhido.getNome() + " você deseja: ");
                 int quantidade = scanner.nextInt();
-                scanner.nextLine(); // Consome o newline
+                scanner.nextLine(); 
                 pedido.adicionarProduto(produtoEscolhido, quantidade);
             }
         }
 
-        // Exibindo produtos no pedido
         pedido.getProdutos();
 
-        // Escolher o método de pagamento
         Map<Integer, String> metodoPagamento = new HashMap<>();
         metodoPagamento.put(1, "Cartão de Crédito");
         metodoPagamento.put(2, "Boleto");
@@ -131,7 +141,7 @@ public class Menu {
         }
 
         int opcaoPagamento = scanner.nextInt();
-        scanner.nextLine(); // Consome o newline
+        scanner.nextLine(); 
 
         Pagamento pagamento = null;
 
@@ -149,14 +159,13 @@ public class Menu {
 
         // Finalizando o pedido
         if (pagamento != null) {
-            pedido.finalizarPedido(pagamento);  // Aqui é onde você imprime os detalhes do pedido.
+            pedido.finalizarPedido(pagamento); 
         }
     }
 
 
-    // Método para processar pagamento com Cartão de Crédito
     private static Pagamento processarPagamentoCartaoCredito(Scanner scanner) {
-        // Consome a linha em excesso
+        
         scanner.nextLine(); 
 
         System.out.print("Digite o número do cartão de crédito: ");
@@ -171,19 +180,19 @@ public class Menu {
         System.out.print("Digite o ano de validade (AAAA): ");
         int anoValidade = scanner.nextInt();
         
-        // Criação do objeto PagamentoCartaoCredito com os dados fornecidos
+        
         return new PagamentoCartaoCredito(125.0, numeroCartao, nomeTitular, mesValidade, anoValidade);
     }
 
-    // Método para processar pagamento com Boleto
+    
     private static Pagamento processarPagamentoBoleto(Scanner scanner) {
-        // Consome a linha em excesso
+       
         scanner.nextLine(); 
 
         System.out.print("Digite o código do boleto: ");
         String codigoBoleto = scanner.nextLine();
         
-        // Criação do objeto PagamentoBoleto com os dados fornecidos
+        
         return new PagamentoBoleto(125.0, codigoBoleto);
     }
     

@@ -8,26 +8,28 @@ public class Pedido {
     private List<Produto> produtos;
     private double total;
 
-    // Construtor
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
         this.produtos = new ArrayList<>();
         this.total = 0.0;
     }
     
-    public void getProdutos() {
-		// TODO Auto-generated method stub
+    public String getTotal() {
 		
+		return null;
 	}
+    
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
 
     // Método para adicionar produto ao pedido
     public void adicionarProduto(Produto produto, int quantidade) {
-        produto.reduzirEstoque(quantidade);  // Supondo que Produto tem um método reduzirEstoque
+        produto.reduzirEstoque(quantidade);  
         produtos.add(produto);
-        total += produto.getPreco() * quantidade;  // Supondo que Produto tem um método getPreco
+        total += produto.getPreco() * quantidade;  
     }
 
-    // Na classe Pedido
     public void finalizarPedido(Pagamento pagamento) {
         System.out.println("\n=== Pedido Finalizado ===");
         System.out.println("Cliente: " + cliente.getNome());
@@ -48,8 +50,5 @@ public class Pedido {
 
         System.out.println("\n=== Fim do Pedido ===");
     }
-
-    
-    
 
 }
